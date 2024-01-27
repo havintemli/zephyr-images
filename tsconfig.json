@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "noErrorTruncation": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "Node",
+    "types": ["node", "./types"]
+  },
+  "include": ["src"]
+}

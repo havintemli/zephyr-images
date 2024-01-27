@@ -1,0 +1,10 @@
+.env
+dist
+node_modules
+assets/idols
+assets/prefabs
+assets/groups
+assets/frames/*
+!assets/frames/default
+assets/stickers
+assets/tmp
