@@ -6,11 +6,63 @@ Where the magic happens. This is the service responsible for generating all of Z
 
 - A computer with [FFmpeg (ideally 6.0.1)](https://ffmpeg.org/download.html), [pnpm](https://pnpm.io/), and [Docker](https://www.docker.com/).
 - An IDE with Intellisense and syntax highlighting is recommended, such as [Visual Studio Code](https://code.visualstudio.com/).
-- You will need to seed the 'cache' directories in the `assets` folder with your own images. The directories will be automatically created when the program first runs.
+- You will need to seed the 'cache' directories in the `assets` folder with your own images. You can find some sample assets in there already.
 
 ### Building
 
 To build the container, simply run `./build.sh` or `powershell ./build.ps1` depending on your platform.
+
+### Example request structure
+
+You can find the full request body schemas in [the src/schema folder](src/schema), but here are some samples:
+
+#### Drop
+
+```bash
+curl 'http://localhost:3000/drop' \
+--header 'Content-Type: application/json' \
+--data '[{
+    "prefabId": 1,
+    "serialNumber": 1,
+    "idolName": "Idol 1",
+    "groupId": 1
+},
+{
+    "prefabId": 2,
+    "serialNumber": 2,
+    "idolName": "Idol 2",
+    "groupId": 1
+},
+{
+    "prefabId": 3,
+    "serialNumber": 3,
+    "idolName": "Idol 3",
+    "groupId": 1
+}]'
+```
+
+#### Card
+
+```bash
+curl 'http://localhost:3000/card' \
+--header 'Content-Type: application/json' \
+--data '{
+    "prefabId": 1,
+    "serialNumber": 3,
+    "idolName": "WYSI",
+    "groupId": 1
+}'
+```
+
+#### Dye
+
+```bash
+curl 'http://localhost:3000/dye' \
+--header 'Content-Type: application/json' \
+--data '{
+    "color": "FFAACC"
+}'
+```
 
 ## Contributing
 
