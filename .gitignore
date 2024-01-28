@@ -1,10 +1,11 @@
 .env
 dist
 node_modules
-assets/idols
+assets/idols/*
 assets/prefabs
-assets/groups
+assets/groups/*
 assets/frames/*
+assets/stickers/*
 !assets/frames/default
-assets/stickers
+!assets/*/**/sample.png
 assets/tmp
