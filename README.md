@@ -49,7 +49,7 @@ curl 'http://localhost:3000/card' \
 --data '{
     "prefabId": 1,
     "serialNumber": 3,
-    "idolName": "WYSI",
+    "idolName": "Idol Name",
     "groupId": 1
 }'
 ```
