@@ -15,7 +15,7 @@ export async function drawDrop(cards: Array<CardData>): Promise<Buffer> {
     const isCustomCard =
       (card.colors !== undefined && card.colors.length > 0) ||
       card.isFlipped === true ||
-      (card.stickers !== undefined && card.stickers.length > 1) ||
+      (card.stickers !== undefined && card.stickers.length > 0) ||
       (card.textColor !== undefined && card.textColor !== "000000") ||
       card.frame !== undefined;
 
