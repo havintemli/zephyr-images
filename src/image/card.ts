@@ -197,7 +197,7 @@ export function generateCardFilters(
   const rgbTextColor = hexToRgb(textColor);
 
   if (inputs.prefab !== undefined) {
-    if (options?.hideSerialNumber === true) {
+    if (options?.hideSerialNumber === true || card.serialNumber === undefined) {
       filters.push(`[named]null[printed]`);
     } else {
       filters.push(
@@ -240,7 +240,7 @@ export function generateCardFilters(
         /:/g,
         "\\:"
       )}':fontcolor=${textColor}:fontsize=55:fontfile='./assets/fonts/default.ttf':x=${alignedNameX}:y=${nameY}[textoverlay_named]`,
-      options?.hideSerialNumber === true
+      options?.hideSerialNumber === true || card.serialNumber === undefined
         ? `[textoverlay_named]null[textoverlay_printed]`
         : `[textoverlay_named]drawtext=text=#${card.serialNumber}:fontcolor=${textColor}:fontsize=40:fontfile='./assets/fonts/default.ttf':x=${alignedSerialX}:y=${serialY}[textoverlay_printed]`
     );
