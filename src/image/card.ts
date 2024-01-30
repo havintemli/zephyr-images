@@ -201,7 +201,11 @@ export function generateCardFilters(
       filters.push(`[named]null[printed]`);
     } else {
       filters.push(
-        `[named]drawtext=text=#${card.serialNumber}:fontcolor=${textColor}:fontsize=40:fontfile='./assets/fonts/default.ttf':x=111:y=897[printed]`
+        `[named]drawtext=text=#${
+          card.serialNumber
+        }:fontcolor=${textColor}:fontsize=${
+          card.frame?.frameSerialFontSize || 40
+        }:fontfile='./assets/fonts/default.ttf':x=111:y=897[printed]`
       );
     }
   } else {
@@ -239,10 +243,16 @@ export function generateCardFilters(
       `[${inputs.overlay!.index}]drawtext=text='${card.idolName.replace(
         /:/g,
         "\\:"
-      )}':fontcolor=${textColor}:fontsize=55:fontfile='./assets/fonts/default.ttf':x=${alignedNameX}:y=${nameY}[textoverlay_named]`,
+      )}':fontcolor=${textColor}:fontsize=${
+        card.frame?.frameNameFontSize || 55
+      }:fontfile='./assets/fonts/default.ttf':x=${alignedNameX}:y=${nameY}[textoverlay_named]`,
       options?.hideSerialNumber === true || card.serialNumber === undefined
         ? `[textoverlay_named]null[textoverlay_printed]`
-        : `[textoverlay_named]drawtext=text=#${card.serialNumber}:fontcolor=${textColor}:fontsize=40:fontfile='./assets/fonts/default.ttf':x=${alignedSerialX}:y=${serialY}[textoverlay_printed]`
+        : `[textoverlay_named]drawtext=text=#${
+            card.serialNumber
+          }:fontcolor=${textColor}:fontsize=${
+            card.frame?.frameSerialFontSize || 40
+          }:fontfile='./assets/fonts/default.ttf':x=${alignedSerialX}:y=${serialY}[textoverlay_printed]`
     );
 
     if (inputs.logo !== undefined) {
