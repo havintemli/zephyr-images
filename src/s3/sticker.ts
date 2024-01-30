@@ -17,12 +17,6 @@ export async function getSticker(
 
   const sqid = sqids.encode([id]);
 
-  console.log(
-    `${
-      process.env.NODE_ENV === "production" ? "" : "_dev/"
-    }ugc/stickers/${sqid}.png`
-  );
-
   const command = new GetObjectCommand({
     Bucket: process.env.S3_BUCKET,
     Key: `${

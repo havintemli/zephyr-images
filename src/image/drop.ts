@@ -41,7 +41,6 @@ export async function drawDrop(cards: Array<CardData>): Promise<Buffer> {
     try {
       await access(prefabPath);
     } catch {
-      console.log("not found");
       const prefabImage = await drawCard(card, { hideSerialNumber: true });
       await writeFile(prefabPath, prefabImage);
     }
@@ -60,10 +59,7 @@ export async function drawDrop(cards: Array<CardData>): Promise<Buffer> {
 
   filters.push(`${finals.join("")}xstack=inputs=3:layout=0_0|w0_0|w0+w1_0`);
 
-  console.log(inputs);
   const buffer = await ffmpeg(inputs, filters, imageToPipe);
-
-  console.log(tempFiles);
 
   for (let file of tempFiles) {
     await unlink(file);

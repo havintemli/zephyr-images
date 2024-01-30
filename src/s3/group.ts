@@ -8,8 +8,6 @@ export async function getGroup(
 ): Promise<string> {
   const path = `./assets/groups/${id}.png`;
 
-  console.log(path);
-
   if (useCache === true) {
     try {
       await access(path, fs.constants.R_OK);

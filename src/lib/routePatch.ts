@@ -12,7 +12,6 @@ export const routePatch = (
 
       response.status(204).send();
     } catch (e: unknown) {
-      console.log(e);
       if (e instanceof ZodError) {
         const errors = e.errors;
         response.status(400).json({
