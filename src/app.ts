@@ -14,6 +14,8 @@ import { routePatch } from "./lib/routePatch.js";
 import { getFrame } from "./s3/frame.js";
 import { getGroup } from "./s3/group.js";
 import { getIdol } from "./s3/idol.js";
+import { collageSchema } from "./schema/collage.js";
+import { drawCollage } from "./image/collage.js";
 
 const app = express().use(express.json());
 
@@ -29,6 +31,7 @@ app.get("/health", async (_, response) => response.status(204).send());
 app.post("/card", route(cardSchema, drawCard));
 app.post("/drop", route(dropSchema, drawDrop));
 app.post("/dye", route(dyeSchema, drawDye));
+app.post("/collage", route(collageSchema, drawCollage));
 
 app.patch("/prefabs/:id", routePatch(getIdol));
 app.patch("/groups/:id", routePatch(getGroup));
