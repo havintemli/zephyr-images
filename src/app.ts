@@ -16,9 +16,12 @@ import { getGroup } from "./s3/group.js";
 import { getIdol } from "./s3/idol.js";
 import { collageSchema } from "./schema/collage.js";
 import { drawCollage } from "./image/collage.js";
+import { albumSchema } from "./schema/album.js";
+import { drawAlbum } from "./image/album.js";
 
 const app = express().use(express.json());
 
+await mkdir("./assets/cards", { recursive: true });
 await mkdir("./assets/idols", { recursive: true });
 await mkdir("./assets/prefabs", { recursive: true });
 await mkdir("./assets/groups", { recursive: true });
@@ -28,6 +31,7 @@ await mkdir("./assets/tmp", { recursive: true });
 
 app.get("/health", async (_, response) => response.status(204).send());
 
+app.post("/album", route(albumSchema, drawAlbum));
 app.post("/card", route(cardSchema, drawCard));
 app.post("/drop", route(dropSchema, drawDrop));
 app.post("/dye", route(dyeSchema, drawDye));

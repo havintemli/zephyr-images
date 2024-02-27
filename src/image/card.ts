@@ -8,10 +8,14 @@ import { getSticker } from "../s3/sticker.js";
 import { ffmpeg } from "../lib/ffmpeg.js";
 import { orDefaultValue } from "../lib/default.js";
 import { getGroup } from "../s3/group.js";
+import { unlink, writeFile } from "fs/promises";
+import hash from "object-hash";
+import { glob } from "glob";
 
 export async function drawCard(
   card: CardData,
   options?: {
+    cache?: boolean;
     hideSerialNumber?: boolean;
     dyeOverride?: string;
     frameOverride?: string;
@@ -114,6 +118,17 @@ export async function drawCard(
   filters.push(generateCardFilters(card, inputData, options));
 
   const buffer = await ffmpeg(inputFiles, filters);
+
+  if (options?.cache === true) {
+    const staleImages = await glob(`./assets/cards/${card.id}-*.png`);
+
+    for (let image of staleImages) {
+      await unlink(image);
+    }
+
+    await writeFile(`./assets/cards/${card.id}-${hash(card)}.png`, buffer);
+  }
+
   return buffer;
 }
 

@@ -4,7 +4,8 @@ import { Writable } from "stream";
 export async function ffmpeg(
   inputs: string[],
   filters: string[] = [],
-  pipeImage?: Buffer | Uint8Array
+  pipeImage?: Buffer | Uint8Array,
+  codec: string = "png"
 ): Promise<Buffer> {
   const buffers: Buffer[] = [];
 
@@ -26,7 +27,7 @@ export async function ffmpeg(
     "-f",
     "image2",
     "-codec",
-    "png",
+    codec,
     "-compression_level",
     "1",
     "pipe:1",

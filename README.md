@@ -5,6 +5,7 @@ Where the magic happens. This is the service responsible for generating all of Z
 ## Requirements
 
 - A computer with [FFmpeg (ideally 6.0.1)](https://ffmpeg.org/download.html), [pnpm](https://pnpm.io/), and [Docker](https://www.docker.com/).
+- [Redis](https://redis.io/download/) for the CDN url store.
 - An IDE with Intellisense and syntax highlighting is recommended, such as [Visual Studio Code](https://code.visualstudio.com/).
 - You will need to seed the 'cache' directories in the `assets` folder with your own images. You can find some sample assets in there already.
 
@@ -47,6 +48,7 @@ curl 'http://localhost:3000/drop' \
 curl 'http://localhost:3000/card' \
 --header 'Content-Type: application/json' \
 --data '{
+    "id": 1,
     "prefabId": 1,
     "serialNumber": 3,
     "idolName": "Idol Name",
@@ -61,6 +63,27 @@ curl 'http://localhost:3000/dye' \
 --header 'Content-Type: application/json' \
 --data '{
     "color": "FFAACC"
+}'
+```
+
+#### Album
+
+```bash
+curl 'http://localhost:3000/album' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": 1,
+    "editMode": false,
+    "width": 3,
+    "height": 3,
+    "cards": [{
+        "id": 1,
+        "position": 1,
+        "prefabId": 1,
+        "serialNumber": 3,
+        "idolName": "Idol Name",
+        "groupId": 1
+    }]
 }'
 ```
 

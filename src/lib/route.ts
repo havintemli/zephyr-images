@@ -3,7 +3,7 @@ import { ZodArray, ZodError, ZodObject } from "zod";
 
 export const route = (
   schema: ZodObject<any> | ZodArray<any>,
-  drawFunction: (...args: any[]) => Promise<Buffer>
+  drawFunction: (...args: any[]) => Promise<Buffer | string>
 ) => {
   return async function handleRoute(request: Request, response: Response) {
     try {
@@ -11,7 +11,18 @@ export const route = (
 
       const image = await drawFunction(query);
 
-      response.status(200).contentType("image/png").send(image);
+      if (image instanceof Buffer) {
+        response.status(200).contentType("image/png").send(image);
+
+        return;
+      } else {
+        response
+          .status(200)
+          .contentType("application/json")
+          .send(JSON.stringify({ url: image }));
+
+        return;
+      }
     } catch (e: unknown) {
       if (e instanceof ZodError) {
         const errors = e.errors;

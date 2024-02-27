@@ -36,6 +36,9 @@ declare module "zephyr-images" {
     b: number;
   };
 
+  type AlbumData = import("zod").z.infer<
+    typeof import("../src/schema/album.js").albumSchema
+  >;
   type CardData = import("zod").z.infer<
     typeof import("../src/schema/card.js").cardSchema
   >;

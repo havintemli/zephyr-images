@@ -4,6 +4,7 @@ import { TextAlignField } from "../lib/enums.js";
 export const hexRegex = /^#?([a-f0-9]{6})|([a-f0-9]{3})$/i;
 
 export const cardSchema = z.object({
+  id: z.number().int(),
   prefabId: z.number().int().positive(),
   serialNumber: z.number().int().optional(),
   idolName: z.string(),
