@@ -240,10 +240,10 @@ export function generateCardFilters(
     }
 
     filters.push(
-      `[${inputs.overlay!.index}]drawtext=text='${card.idolName.replace(
-        /:/g,
-        "\\:"
-      )}':fontcolor=${textColor}:fontsize=${
+      `[${inputs.overlay!.index}]drawtext=text='${card.idolName
+        .replace(/:/g, "\\:")
+        .replace(/'/g, "'\\\\\\''")
+        .replace(/%/g, "\\\\%")}':fontcolor=${textColor}:fontsize=${
         card.frame?.frameNameFontSize || 55
       }:fontfile='./assets/fonts/default.ttf':x=${alignedNameX}:y=${nameY}[textoverlay_named]`,
       options?.hideSerialNumber === true || card.serialNumber === undefined
