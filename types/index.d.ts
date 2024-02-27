@@ -48,7 +48,4 @@ declare module "zephyr-images" {
   type DyeData = import("zod").z.infer<
     typeof import("../src/schema/dye.js").dyeSchema
   >;
-  type CollageData = import("zod").z.infer<
-    typeof import("../src/schema/collage.js").collageSchema
-  >;
 }
