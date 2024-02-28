@@ -40,7 +40,7 @@ export async function ffmpeg(
 
   child.stdout.pipe(writable);
   child.stderr.on("data", (data) => {
-    console.error(data.toString());
+    console.error(`ffmpeg error - ${data.toString()}`);
   });
 
   const buffer: Buffer = await new Promise((resolve) => {
