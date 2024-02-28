@@ -1,1 +1,1 @@
-docker run --name zephyr-images -d -p 127.0.0.1:3002:3002 -v ./assets:/zephyr-images/assets:rw zephyr-images
+docker compose up -d

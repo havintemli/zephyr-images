@@ -5,13 +5,13 @@ Where the magic happens. This is the service responsible for generating all of Z
 ## Requirements
 
 - A computer with [FFmpeg (ideally 6.0.1)](https://ffmpeg.org/download.html), [pnpm](https://pnpm.io/), and [Docker](https://www.docker.com/).
-- [Redis](https://redis.io/download/) for the CDN url store.
+- You will need [Redis](https://redis.io/download/) for the CDN url store if you're running the service without Docker.
 - An IDE with Intellisense and syntax highlighting is recommended, such as [Visual Studio Code](https://code.visualstudio.com/).
 - You will need to seed the 'cache' directories in the `assets` folder with your own images. You can find some sample assets in there already.
 
 ### Building
 
-To build the container, simply run `./build.sh` or `powershell ./build.ps1` depending on your platform.
+To build the containers, simply run `./build.sh` or `powershell ./build.ps1` depending on your platform.
 
 ### Example request structure
 

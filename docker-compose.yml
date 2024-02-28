@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  zephyr-images:
+    container_name: zephyr-images
+    restart: always
+    build:
+      context: .
+    volumes:
+      - assets:/zephyr-images/assets
+    networks:
+      - redis
+    ports:
+      - 127.0.0.1:3002:3002
+    env_file: ./.env
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 127.0.0.1:6379:6379
+    networks:
+      - redis
+networks:
+  redis:
+volumes:
+  assets:

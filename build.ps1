@@ -1,1 +1,1 @@
-docker build -t zephyr-images .
+docker compose build
