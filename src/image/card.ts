@@ -9,10 +9,10 @@ import { ffmpeg } from "../lib/ffmpeg.js";
 import { orDefaultValue } from "../lib/default.js";
 import { getGroup } from "../s3/group.js";
 import { writeFile } from "fs/promises";
-import hash from "object-hash";
 
 export async function drawCard(
   card: CardData,
+  hash: string,
   options?: {
     cache?: boolean;
     hideSerialNumber?: boolean;
@@ -119,7 +119,7 @@ export async function drawCard(
   const buffer = await ffmpeg(inputFiles, filters);
 
   if (options?.cache === true) {
-    await writeFile(`./assets/cards/${card.id}-${hash(card)}.png`, buffer);
+    await writeFile(`./assets/cards/${card.id}-${hash}.png`, buffer);
   }
 
   return buffer;

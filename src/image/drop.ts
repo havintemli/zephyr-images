@@ -24,7 +24,7 @@ export async function drawDrop(cards: Array<CardData>): Promise<Buffer> {
         Math.random() * 1000
       )}.png`;
 
-      const tempImage = await drawCard(card);
+      const tempImage = await drawCard(card, "");
 
       await writeFile(tempPath, tempImage);
       tempFiles.push(tempPath);
@@ -41,7 +41,7 @@ export async function drawDrop(cards: Array<CardData>): Promise<Buffer> {
     try {
       await access(prefabPath);
     } catch {
-      const prefabImage = await drawCard(card, { hideSerialNumber: true });
+      const prefabImage = await drawCard(card, "", { hideSerialNumber: true });
       await writeFile(prefabPath, prefabImage);
     }
 

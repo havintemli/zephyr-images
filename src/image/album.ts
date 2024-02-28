@@ -49,7 +49,7 @@ export async function drawAlbum(album: AlbumData): Promise<string> {
     try {
       await access(path);
     } catch {
-      await drawCard(card, { cache: true });
+      await drawCard(card, cardHash, { cache: true });
     }
 
     inputs.push(`-i ${path}`);
