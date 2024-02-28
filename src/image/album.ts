@@ -105,6 +105,10 @@ export async function drawAlbum(album: AlbumData): Promise<string> {
       );
       placeholders++;
     }
+
+    if (placeholders === 0) {
+      overlayFilters.push(`[cards]null`);
+    }
   }
 
   const collage = await ffmpeg(
