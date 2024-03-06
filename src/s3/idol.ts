@@ -18,15 +18,11 @@ export async function getIdol(
 
   const sqid = sqids.encode([id]);
 
-  const key = `${
-    process.env.NODE_ENV === "production" ? "" : "_dev/"
-  }prefabs/${sqid}.png`;
-
-  console.log(`Requesting file from ${key} ...`);
-
   const command = new GetObjectCommand({
     Bucket: process.env.S3_BUCKET,
-    Key: key,
+    Key: `${
+      process.env.NODE_ENV === "production" ? "" : "_dev/"
+    }prefabs/${sqid}.png`,
     ResponseContentType: "image/png",
   });
 

@@ -71,11 +71,13 @@ export async function drawCard(
     };
 
     if (card.groupId !== undefined) {
-      const groupPath = await getGroup(card.groupId);
-      inputFiles.push(`-i ${groupPath}`);
-      inputData.logo = {
-        index: 4,
-      };
+      try {
+        const groupPath = await getGroup(card.groupId);
+        inputFiles.push(`-i ${groupPath}`);
+        inputData.logo = {
+          index: 4,
+        };
+      } catch {}
     }
   }
 
